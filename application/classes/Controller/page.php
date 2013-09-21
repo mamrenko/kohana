@@ -13,7 +13,7 @@ class Controller_Page extends Controller_Application {
             $content = View::factory('pages/why_egotist');
              $this->template->content = $content;
             
-            
+         
         }
 
 } 
