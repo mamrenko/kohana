@@ -9,3 +9,4 @@
     
 ));?>
 <p><?= URL::title('Narwayls are real, - "Breaking News"');?></p>
+<p><?= URL::base()?></p>
