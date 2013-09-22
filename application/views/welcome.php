@@ -32,4 +32,24 @@ $first_name = Arr::pluck($arrayList, 'first_name');
 <?foreach($first_name as $first):?>
 <p><?=$first?></p>
 <?endforeach?>
-
+<?=var_dump($first)?>
+ The Arr::merge[] method
+ <?php
+    $array_01 = array(
+        'id' => 1,
+        'favorite_foods' => array(
+            'bacon', 'chessburgers', 'pizza'
+        )
+        
+    );
+    
+    $array_02 = array(
+        'id' => 2,
+        'favorite_foods' => array(
+            'bacon', 'bananas', 'apples'
+        )
+        
+    );
+$merged = Arr::merge($array_02, $array_01);
+?>
+ <p><?var_dump($merged);?></p>
