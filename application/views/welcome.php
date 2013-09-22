@@ -53,3 +53,24 @@ $first_name = Arr::pluck($arrayList, 'first_name');
 $merged = Arr::merge($array_02, $array_01);
 ?>
  <p><?var_dump($merged);?></p>
+ <h2>The Arr::overwrite[] method</h2>
+ 
+ <?php
+ $defaults = array(
+   'page' => '1',
+   'keywords' => null,
+   'sort_order' => 'asc',
+   'order_by' => 'name'
+    
+ );
+ $new_defaults = array(
+   'page' => '11',
+   'keywords' => 'bacon, narwal',
+   'sort_order' => 'rank',
+   'user_name' => 'user_name'
+    
+ );
+ $values = Arr::overwrite($defaults, $new_defaults);
+ ?>
+<?
+  var_dump($values)?>
