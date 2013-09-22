@@ -8,3 +8,4 @@
     'class' => 'foobar',
     
 ));?>
+<p><?= URL::title('Narwayls are real, - "Breaking News"');?></p>
