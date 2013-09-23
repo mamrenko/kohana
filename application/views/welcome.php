@@ -170,5 +170,14 @@ var_dump($user);
   $feed =  Feed::create($info, $items, 'atom');
   $parsed = Feed::parse($feed);
   var_dump($parsed);
+ ?> 
   
+  <h2>The Form Class</h2>
+  <?php 
+  echo Form::open(URL::site('form/submit-to-page'),
+          array(
+              'enctype' =>'multipart/form-data',
+              'class' => 'form1'
+              
+          ));?>
   
