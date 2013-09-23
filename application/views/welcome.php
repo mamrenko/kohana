@@ -147,4 +147,28 @@ var_dump($user);
  $decrypted_email = $encrypt->decode($email);
  echo $decrypted_email;
  ?>
+ <h2>The Feed Class</h2>
+ <?php 
+ $info = array(
+     'title' => 'Test Feed',
+     'link' => URL::site('some/link/location'),
+     'generator' => 'Egotist Beta'
+ );
+ $items = array(
+     array(
+         'title' => 'Test Feed Item One...',
+         'summay' => 'This is a test feed item...',
+         'putdate' => date('r', time())
+     ),
+     array(
+         'title' => 'Test Feed Item Two...',
+         'summay' => 'This is a test feed item...',
+         'putdate' => date('r', time() -2500)
+     )
+     
+ );
+  $feed =  Feed::create($info, $items, 'atom');
+  $parsed = Feed::parse($feed);
+  var_dump($parsed);
+  
   
