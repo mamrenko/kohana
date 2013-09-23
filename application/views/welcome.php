@@ -74,3 +74,22 @@ $merged = Arr::merge($array_02, $array_01);
  ?>
 <?
   var_dump($values)?>
+ <h2>The Arr::flatten</h2>   
+     <?php
+$multi = array(
+    'id' => array(
+        'favorite_foods' => array(
+            'bacon', 'cheesburgers', 'pizza','bananas','apples'
+        )
+    )
+    
+    
+);
+$flat = Arr::flatten($multi);
+var_dump($flat);
+
+
+?>
+<?foreach($flat as $fla):?>
+ <p><?=$fla?></p>
+<? endforeach; ?>
