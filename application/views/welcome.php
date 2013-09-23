@@ -205,3 +205,13 @@ var_dump($user);
   
   <p><?=Form::submit('submit', 'Agree to Terms of Service');?></p>
   <?=Form::close()?>
+
+  <?php 
+  $content = 'This is a test message';
+  $author = 'Alexandra Mamrenko';
+  $timestamp = time() -2500;
+  ?>
+<p><?= HTML::message($content, $author, $timestamp);?></p>
+
+<?$user55 = 'Fread_Vasya'; ?>
+<p><?=HTML::chars($user55);?></p>
