@@ -116,3 +116,14 @@ var_dump($user);
     $big_user = Arr::map('strtoupper', $user2);
     var_dump($big_user);
     ?>
+
+ <h2>The Arr::is_array[] method</h2>
+ <?php 
+ $a = Arr::is_array(array());
+ var_dump($a);
+ ?>
+ <h2>The Arr::is_range[] method</h2>
+ <?php 
+ $range = Arr::range(1,10);
+ var_dump($range);
+ ?>
