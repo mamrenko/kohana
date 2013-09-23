@@ -93,3 +93,12 @@ var_dump($flat);
 <?foreach($flat as $fla):?>
  <p><?=$fla?></p>
 <? endforeach; ?>
+ <h2>The Arr::unshift[] method</h2>
+ <?php $user = array(
+     'first_name' => 'Jason',
+     'last_name' => "Mamrenko",
+     'user_name' => 'dseavsxxx'
+ );
+$user = Arr::unshift($user, 'id', 42);
+var_dump($user);
+?>
