@@ -11,6 +11,15 @@ class Controller_User_Account extends Controller_Application{
 		
 		$this->template->content = $content;
 	}
+        public function action_signup()
+	{		
+		
+		
+		$content = View::factory('account/signup');
+			
+		
+		$this->template->content = $content;
+	}
         
 }  
 

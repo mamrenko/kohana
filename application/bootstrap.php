@@ -92,6 +92,13 @@ Kohana::modules(array(
  * Set the routes. Each route must have a minimum of a name, a URI and a set of
  * defaults for the URI.
  */
+Route::set('signup', 'signup')
+	->defaults(array(
+                'directory' =>'user',
+		'controller' => 'account',
+		'action'     => 'signup',
+	));
+
 Route::set('login', 'login')
 	->defaults(array(
                 'directory' =>'user',

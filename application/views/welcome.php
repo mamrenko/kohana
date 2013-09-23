@@ -172,7 +172,17 @@ var_dump($user);
   var_dump($parsed);
  ?> 
   
-  <h2>The Form Class</h2>
+  <h1>The Form Class</h1>
+  <?php
+  $colors = array(
+      'red' => 'Red',
+      'blue' => 'Blue',
+      'green'=> 'Green',
+      'orange' => 'Orange',
+      
+      
+  );
+  ?>
   <?php 
   echo Form::open(URL::site('form/submit-to-page'),
           array(
@@ -181,3 +191,17 @@ var_dump($user);
               
           ));?>
   
+  <?=Form::label('terms','Terms of service'); ?>
+  <?=Form::checkbox('terms', 'agree', 'false', array(
+      'class' => 'terms',
+  )); ?>
+  <p><?=Form::label('avatar','Avatar'); ?></p>
+  <p><?=Form::file('avatar')?></p>
+  <p><?=Form::label('fav_color', 'What is your favorite color?')?></p>
+  <?=Form::select('fav_color', $colors, 'red'); ?>
+  
+  <p><?=Form::label('message', 'New Message');?></p>
+  <p><?=Form::textarea('message');?></p>
+  
+  <p><?=Form::submit('submit', 'Agree to Terms of Service');?></p>
+  <?=Form::close()?>
