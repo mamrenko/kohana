@@ -127,3 +127,24 @@ var_dump($user);
  $range = Arr::range(1,10);
  var_dump($range);
  ?>
+
+ <h2>The Cookie Class</h2>
+ <?php
+ Cookie::set('username', 'gftrhdhdjueueej');
+ $username = Cookie::get('username');
+ 
+ ?>
+ <p><?  var_dump($username);?></p>
+ <?php Cookie::delete('username');?>
+ 
+ <h2>The Encrypt Class</h2>
+ 
+ <?php 
+ $encrypt = Encrypt::instance();
+ $email = $encrypt->encode('admin@ass.ru');
+ echo $email;
+ 
+ $decrypted_email = $encrypt->decode($email);
+ echo $decrypted_email;
+ ?>
+  
