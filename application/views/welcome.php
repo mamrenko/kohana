@@ -102,3 +102,17 @@ var_dump($flat);
 $user = Arr::unshift($user, 'id', 42);
 var_dump($user);
 ?>
+
+ <h2>The Arr::map[] method</h2>
+ <?php
+    $user2 = array(
+        'id' => 42,
+        'userinfo' =>  array(
+            'first_name' => 'Aleksandra',
+            'last_name' => 'Mamrenko',
+            'user_name' => 'brsdera',
+        )
+    );
+    $big_user = Arr::map('strtoupper', $user2);
+    var_dump($big_user);
+    ?>
