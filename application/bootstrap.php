@@ -81,7 +81,7 @@ Kohana::modules(array(
 	//'codebench'  => MODPATH.'codebench',  // Benchmarking tool
         'database'   => MODPATH.'database',   // Database access
 	'image'      => MODPATH.'image',      // Image manipulation
-	// 'orm'        => MODPATH.'orm',        // Object Relationship Mapping
+	'orm'        => MODPATH.'orm',        // Object Relationship Mapping
 	'//oauth'      => MODPATH.'oauth',      // OAuth authentication
 	'pagination' => MODPATH.'pagination', // Paging of results
 	// 'unittest'   => MODPATH.'unittest',   // Unit testing

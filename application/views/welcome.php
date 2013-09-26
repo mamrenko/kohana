@@ -3,10 +3,10 @@
 <?php foreach ($messages as $message) : ?>
 
 	<p class="message">
-		<?php echo $message['content']; ?>
+		<?php echo $message->content; ?>
 		<br />
 		<span class="published">
-			<?php echo Date::fuzzy_span($message['date_published'])?>
+			<?php echo Date::fuzzy_span($message->date_published)?>
 		</span>
 	</p>
 
