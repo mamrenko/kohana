@@ -93,6 +93,22 @@ Kohana::modules(array(
  * Set the routes. Each route must have a minimum of a name, a URI and a set of
  * defaults for the URI.
  */
+Route::set('user-messages', 'messages/get_messages/<id>(/<optional>)', array(
+		'id' => '[0-9]+', 
+		'optional' => '.*'))
+	->defaults(array(
+		'directory' => 'user',
+		'controller' => 'messages',
+		'action'     => 'get_messages',
+	));
+
+Route::set('user-add-message', 'messages/add(/<id>)', array('id' => '[0-9]+'))
+	->defaults(array(
+		'directory' => 'user',
+		'controller' => 'messages',
+		'action'     => 'add'
+	));
+	
 Route::set('signup', 'signup')
 	->defaults(array(
                 'directory' =>'user',
