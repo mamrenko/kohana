@@ -1,10 +1,12 @@
-<h2>Add New message</h2>
-<?=Form::open();?>
-<div classes="field">
-    <?=Form::textarea('content');?>
-</div>
-<div class="field">
-    <?=Form::submit('add_message', 'Create New Message');?>
-</div>
+<?php $form_type = Request::instance()->action == 'add' ? 'Create New' : 'Edit' ?>
+<h2><?php echo $form_type; ?> Message</h2>
+<?php echo Form::open(); ?>
+	<div class="field">
+		<?php $body = isset($value) ? $value : ''; ?>
+		<?php echo Form::textarea('content', $body); ?>
+	</div>
+	<div class="field">
+		<?php echo Form::submit('message_form', "$form_type Message"); ?>
+	</div>
 
-<?=Form::close()?>
+<?php echo Form::close(); ?>

@@ -61,7 +61,7 @@ class Controller_User_Messages extends Controller_Application {
 		{
 			$messages->add($user_id, (string) $_POST['content']);
 			//$redirect = URL::site("messages/get_messages/$user_id");
-                        $redirect =("messages/get_messages/$user_id");
+                        $redirect = ("messages/get_messages/$user_id");
 			Request::instance()->redirect($redirect);
 		}		
 		
@@ -88,7 +88,7 @@ class Controller_User_Messages extends Controller_Application {
 		if ($_POST && $_POST['content'])
 		{
 			$messages->edit($message_id, $_POST['content']);
-			$redirect = url::site("messages/get_messages/$user_id");
+			$redirect = ("messages/get_messages/$user_id");
 			Request::instance()->redirect($redirect);
 		}		
 		
