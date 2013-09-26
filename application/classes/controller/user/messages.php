@@ -111,7 +111,7 @@ class Controller_User_Messages extends Controller_Application {
 
 		$messages->delete($message_id);
 		
-		$redirect = url::site("messages/get_messages/$user_id");
+		$redirect = ("messages/get_messages/$user_id");
 		Request::instance()->redirect($redirect);
 		
 	}

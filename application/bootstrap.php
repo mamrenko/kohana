@@ -93,6 +93,13 @@ Kohana::modules(array(
  * Set the routes. Each route must have a minimum of a name, a URI and a set of
  * defaults for the URI.
  */
+
+Route::set('user-delete-message', 'messages/delete(/<user_id>(/<message_id>))', array('id' => '[0-9]+'))
+	->defaults(array(
+		'directory' => 'user',
+		'controller' => 'messages',
+		'action'     => 'delete'
+	));
 Route::set('user-edit-message', 'messages/edit(/<user_id>(/<message_id>))', array('id' => '[0-9]+'))
 	->defaults(array(
 		'directory' => 'user',
