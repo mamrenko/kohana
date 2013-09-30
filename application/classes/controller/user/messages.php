@@ -64,25 +64,26 @@ class Controller_User_Messages extends Controller_Application {
 	
 	public function action_add() 
 	{
-		$user = Auth::instance()->get_user();
+		//$user = Auth::instance()->get_user();
 
 		$message = new Model_Message;
 		
 		$user_id = $this->request->param('id');
 		
-		$message->user = $user;
+		//$message->user = $user;
 		
 		$this->template->content = View::factory('profile/message_form')
 			->bind('errors', $errors);
 		
 		if ($_POST)
 		{
+                        $_POST['user_id'] = $user_id;
 			$_POST['date_published'] = time();
 			$message->values($_POST);
 			if ($message->check())
 			{
 				$message->save();
-				$redirect = url::site("messages/get_messages/$user_id");
+				$redirect = ("messages/get_messages/$user_id");
 				Request::instance()->redirect($redirect);
 			}
 			else 
