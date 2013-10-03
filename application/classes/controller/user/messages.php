@@ -64,26 +64,25 @@ class Controller_User_Messages extends Controller_Application {
 	
 	public function action_add() 
 	{
-		//$user = Auth::instance()->get_user();
+		$user = Auth::instance()->get_user();
 
 		$message = new Model_Message;
 		
-		$user_id = $this->request->param('id');
+		//$user_id = $this->request->param('id');
 		
-		//$message->user = $user;
+		$message->user = $user;
 		
 		$this->template->content = View::factory('profile/message_form')
 			->bind('errors', $errors);
 		
 		if ($_POST)
 		{
-                        $_POST['user_id'] = $user_id;
 			$_POST['date_published'] = time();
 			$message->values($_POST);
 			if ($message->check())
 			{
 				$message->save();
-				$redirect = ("messages/get_messages/$user_id");
+				$redirect = ("messages/get_messages/$user->id");
 				Request::instance()->redirect($redirect);
 			}
 			else 
@@ -106,17 +105,18 @@ class Controller_User_Messages extends Controller_Application {
 		
 		$message = $messages->find($message_id);
 		
-		if ($message->user_id != $user_id) {
+		if ($message->user_id != $user->id) {
 			throw new Exception("User is not owner of the message");
 		}
 		
 		$this->template->content = View::factory('profile/message_form')
-			->set('value', $message->content);
+			->set('value', $message->content)
+                        ->bind('errors', $errors);
 		
 		if ($_POST && $_POST['content'])
 		{
 			$messages->edit($message_id, $_POST['content']);
-			$redirect = url::site("messages/get_messages/$user_id");
+			$redirect = ("messages/get_messages/$user->id");
 			Request::instance()->redirect($redirect);
 		}		
 		
@@ -129,17 +129,17 @@ class Controller_User_Messages extends Controller_Application {
 		
 		$message_id = $this->request->param('message_id');
 		
-		$messages = new Model_Message;
+		$message = new Model_Message;
 		
 		$message->find($message_id);
 		
-		if ($message->user_id != $user_id) {
+		if ($message->user_id != $user->id) {
 			throw new Exception("User is not owner of the message");
 		}
 
-		$messages->delete($message_id);
+		$message->delete($message_id);
 		
-		$redirect = url::site("messages/get_messages/$user_id");
+		$redirect = ("messages/get_messages/$user->id");
 		Request::instance()->redirect($redirect);
 		
 	}

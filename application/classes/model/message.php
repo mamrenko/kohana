@@ -9,7 +9,7 @@ class Model_Message extends ORM {
 	protected $_table = 'messages';
 	
 	// Define relationships
-	//protected $_belongs_to = array('user' => array());
+	protected $_belongs_to = array('user' => array());
 	
 	// Define rules
 	protected $_rules = array(
@@ -19,7 +19,7 @@ class Model_Message extends ORM {
 		),
 		'content' => array(
 			'not_empty' => NULL,
-			'min_length' => array(20),
+			'min_length' => array(2),
 			'max_length' => array(240),
 		),
 		'date_published' => array(

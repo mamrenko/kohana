@@ -1,46 +1,38 @@
-<h1>Sign up  for Egotist! You know you want to!</h1>
+<h1>Sign up for Egotist.. You know you want to!</h1>
 
-    
-    
- <?= Form::open();?>
-    <div class="form-field">
+<?php if ($errors): ?>
+	<h2 class="error">There were form errors.</h2>
+	<ul class="errors">
+	<?php foreach ($errors  as $error): ?>
+		<li><?php echo $error ?></li>
+	<?php endforeach; ?>
+	</ul>
+<?php endif; ?>
 
-        <?= Form::label('first_name');?>
-        <?= Form::input('first_name');?>
-        
-   </div>
+<?php echo Form::open(); ?>
 
-   <div class="form-field">
-       
-        <?= Form::label('last_name');?>
-        <?= Form::input('last_name');?>
-    
-   </div> 
-
- <div class="form-field">
-       
-        <?= Form::label('email', 'Email Address');?>
-        <?= Form::input('email');?>
-    
-   </div> 
- <div class="form-field">
-       
-        <?= Form::label('password');?>
-        <?= Form::input('password');?>
-    
-   </div> 
- <div class="form-field">
-       
-        <?= Form::label('password_confirm');?>
-        <?= Form::input('password_confirm');?>
-    
-   </div>
-
- <div class="form-field">
-       
-        <?= Form::submit('submit', 'Create New Account');?>
-    
-   </div> 
-
-<?= Form::close()?>
-
+	<div class="form-field">
+		<?php echo Form::label('username', 'Username')?>
+		<?php echo Form::input('username'); ?>	
+	</div>
+	
+	<div class="form-field">
+		<?php echo Form::label('email', 'Email Address')?>
+		<?php echo Form::input('email'); ?>	
+	</div>	
+		
+	<div class="form-field">
+		<?php echo Form::label('password'); ?>
+		<?php echo Form::password('password'); ?>	
+	</div>
+	
+	<div class="form-field">
+		<?php echo Form::label('password_confirm', 'Confirm Password')?>
+	<?php echo Form::password('password_confirm'); ?>	
+	</div>
+	
+	<div class="form-field">
+		<?php echo Form::submit('submit', 'Create new account'); ?>	
+	</div>
+	
+<?php echo Form::close(); ?>

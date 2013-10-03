@@ -94,17 +94,48 @@ Kohana::modules(array(
  * defaults for the URI.
  */
 
-Route::set('user-delete-message', 'messages/delete(/<user_id>(/<message_id>))', array('id' => '[0-9]+'))
+Route::set('login', 'login')
 	->defaults(array(
 		'directory' => 'user',
-		'controller' => 'messages',
-		'action'     => 'delete'
+		'controller' => 'account',
+		'action'     => 'login',
 	));
-Route::set('user-edit-message', 'messages/edit(/<user_id>(/<message_id>))', array('id' => '[0-9]+'))
+	
+Route::set('logout', 'logout')
 	->defaults(array(
 		'directory' => 'user',
-		'controller' => 'messages',
-		'action'     => 'edit'
+		'controller' => 'account',
+		'action'     => 'logout',
+	));
+	
+Route::set('noaccess', 'noaccess')
+	->defaults(array(
+		'directory' => 'user',
+		'controller' => 'account',
+		'action'     => 'noaccess',
+	));
+	
+Route::set('signup', 'signup')
+	->defaults(array(
+		'directory' => 'user',
+		'controller' => 'account',
+		'action'     => 'signup',
+	)); 
+
+Route::set('profile-private', 'profile/private')
+	->defaults(array(
+		'directory' => 'user',
+		'controller' => 'profile',
+		'action'     => 'private',
+	));
+
+Route::set('profile', 'profile/<id>(/<optional>)', array(
+		'id' => '[0-9]+', 
+		'optional' => '.*'))
+	->defaults(array(
+		'directory' => 'user',
+		'controller' => 'profile',
+		'action'     => 'index',
 	));
 
 Route::set('user-messages', 'messages/get_messages/<id>(/<optional>)', array(
@@ -123,36 +154,34 @@ Route::set('user-add-message', 'messages/add(/<id>)', array('id' => '[0-9]+'))
 		'action'     => 'add'
 	));
 	
-Route::set('signup', 'signup')
-	->defaults(array(
-                'directory' =>'user',
-		'controller' => 'account',
-		'action'     => 'signup',
-	));
-
-Route::set('login', 'login')
-	->defaults(array(
-                'directory' =>'user',
-		'controller' => 'account',
-		'action'     => 'login',
-	));
-Route::set('profile', 'profile/<id>(/<optional>)', array('id' => '[0-9]+', 'optional' => '.*'))
-	->defaults(array(
-		'directory' => 'user',
-		'controller' => 'profile',
-		'action'     => 'index',
-	));
-Route::set('user-messages', 'messages/<action>/<id>(/<optional>)', array('id' => '[0-9]+', 'optional' => '.*'))
+Route::set('user-edit-message', 'messages/edit(/<user_id>(/<message_id>))', array('id' => '[0-9]+'))
 	->defaults(array(
 		'directory' => 'user',
 		'controller' => 'messages',
-		'action'     => 'index',
+		'action'     => 'edit'
 	));
+
+Route::set('user-delete-message', 'messages/delete(/<user_id>(/<message_id>))', array('id' => '[0-9]+'))
+	->defaults(array(
+		'directory' => 'user',
+		'controller' => 'messages',
+		'action'     => 'delete'
+	));
+	
+Route::set('new-messages', 'new(/<user_id>(/<message_id>))', array('id' => '[0-9]+'))
+->defaults(array(
+	'directory' => 'user',
+	'controller' => 'messages',
+	'action'     => 'new'
+));
+
 Route::set('default', '(<controller>(/<action>(/<id>)))')
 	->defaults(array(
 		'controller' => 'welcome',
 		'action'     => 'index',
 	));
+
+
 
 if ( ! defined('SUPPRESS_REQUEST'))
 {
