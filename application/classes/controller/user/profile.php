@@ -2,9 +2,9 @@
 
 class Controller_User_Profile extends Controller_Application {
 
-//	public $assert_auth_actions = array(
-//		'private' => array('login')
-//	);
+	public $assert_auth_actions = array(
+		'private' => array('login')
+	);
 
 	public function action_index()
 	{		
