@@ -184,14 +184,38 @@ Route::set('default', '(<controller>(/<action>(/<id>)))')
 
 
 
-if ( ! defined('SUPPRESS_REQUEST'))
+$request = Request::instance();
+
+try
 {
-	/**
-	 * Execute the main request. A source of the URI can be passed, eg: $_SERVER['PATH_INFO'].
-	 * If no source is specified, the URI will be automatically detected.
-	 */
-	echo Request::instance()
-		->execute()
-		->send_headers()
-		->response;
+	// Attempt to execute the response
+	$request->execute();
 }
+catch (Exception $e)
+{
+	if (Kohana::$environment == Kohana::PRODUCTION)
+	{
+		// Just re-throw the exception
+		throw $e;
+	}
+
+	// Log the error
+	Kohana::$log->add(Kohana::ERROR, Kohana::exception_text($e));
+
+	// Create a 404 response
+	$request->status   = 404;
+	View::set_global('site_name', 'Egotist Beta');
+	$request->response = View::factory('template')
+		->set('title', '404')
+		->set('styles', array(
+			'reset',
+			'common'))
+		->set('scripts', array())
+		->set('content', View::factory('errors/404'));
+}
+
+
+/**
+ * Display the request response.
+ */
+echo $request->send_headers()->response;
