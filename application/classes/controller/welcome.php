@@ -22,5 +22,6 @@ class Controller_Welcome extends Controller_Application{
 		$messages = $message->get_all($pagination->items_per_page, $pagination->offset);
 
 		$this->template->content = $content;
+                echo Kohana::debug_source(__FILE__,__LINE__, 50);
 	}
 } // End Welcome

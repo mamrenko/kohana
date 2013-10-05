@@ -49,7 +49,7 @@ class Controller_User_Account extends Controller_Application {
 				$user->values($post);
 				$user->save();
 				$user->add('roles', ORM::factory('role')->find(1));
-				
+				Request::instance()->redirect('login');
 			}
 			else
 			{

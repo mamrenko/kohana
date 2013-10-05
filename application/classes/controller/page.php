@@ -19,5 +19,16 @@ class Controller_Page extends Controller_Application{
 		
 		$this->template->content = $content;
 	}
+        
+        
+         public function action_debug()
+	{
+        
+		
+		$content = View::factory('pages/debug');
+		
+		$this->template->content = $content;
+	}
+        
 
 }

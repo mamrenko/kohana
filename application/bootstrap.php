@@ -60,6 +60,7 @@ if (isset($_SERVER['KOHANA_ENV']))
 Kohana::init(array(
 	'base_url'   => '/kohana/',
         'index_file' => FALSE,
+        'errors' => FALSE,
 ));
 
 /**

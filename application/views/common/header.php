@@ -8,6 +8,7 @@
 	<li><a href="<?php echo url::site(); ?>">Home</a></li>
 	<li><a href="<?php echo url::site('page/about'); ?>">About <?php echo $site_name; ?></a></li>
 	<li><a href="<?php echo url::site('page/why_egotist'); ?>">Why use Egotist?</a></li>
+        <li><a href="<?php echo url::site('page/debug'); ?>">Debug</a></li>
 </ul>
 <p id="account">
 
