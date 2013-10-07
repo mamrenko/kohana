@@ -10,4 +10,4 @@ $array = array(
 //exit();
 $message = new Model_Message;
 echo Kohana::debug($array, $message->find_all());
-exit();
+//exit();

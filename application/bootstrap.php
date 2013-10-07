@@ -193,7 +193,7 @@ try
 }
 catch (Exception $e)
 {
-	if (Kohana::$environment == Kohana::PRODUCTION)
+	if (Kohana::$environment == Kohana::DEVELOPMENT)
 	{
 		// Just re-throw the exception
 		throw $e;
