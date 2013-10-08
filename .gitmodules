@@ -31,3 +31,6 @@
 [submodule "modules/oauth"]
 	path = modules/oauth
 	url = http://github.com/kohana/oauth.git
+[submodule "modules/purifier"]
+	path = modules/purifier
+	url = git://github.com/shadowhand/purifier.git
