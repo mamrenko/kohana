@@ -37,14 +37,11 @@ ini_set('unserialize_callback_func', 'spl_autoload_call');
 //-- Configuration and initialization -----------------------------------------
 
 /**
- * Set the environment string by the domain 
- * (defaults to Kohana::DEVELOPMENT)
+ * Set Kohana::$environment if a 'KOHANA_ENV' environment variable has been supplied.
  */
 Kohana::$environment = ($_SERVER['SERVER_NAME'] !== 'localhost') ? 	Kohana::PRODUCTION : Kohana::DEVELOPMENT;
-
 Cookie::$salt = 'Narwhals can triforce';
 Cookie::$expiration = Date::WEEK;
-
 /**
  * Initialize Kohana, setting the default options.
  *
@@ -79,17 +76,17 @@ Kohana::$config->attach(new Kohana_Config_File);
  * Enable modules. Modules are referenced by a relative or absolute path.
  */
 Kohana::modules(array(
-	'auth'       => MODPATH.'auth',       // Basic authentication
+	 'auth'       => MODPATH.'auth',       // Basic authentication
 	// 'cache'      => MODPATH.'cache',      // Caching with multiple backends
-	'codebench'  => MODPATH.'codebench',  // Benchmarking tool
-	'database'   => MODPATH.'database',   // Database access
+	//'codebench'  => MODPATH.'codebench',  // Benchmarking tool
+        'database'   => MODPATH.'database',   // Database access
 	'image'      => MODPATH.'image',      // Image manipulation
 	'orm'        => MODPATH.'orm',        // Object Relationship Mapping
-	// 'oauth'      => MODPATH.'oauth',      // OAuth authentication
+	'//oauth'      => MODPATH.'oauth',      // OAuth authentication
 	'pagination' => MODPATH.'pagination', // Paging of results
 	// 'unittest'   => MODPATH.'unittest',   // Unit testing
-	'userguide'  => MODPATH.'userguide',  // User guide and API documentation
-	'mailer' 	 => MODPATH.'mailer', 	// Mailer module
+	 'userguide'  => MODPATH.'userguide',  // User guide and API documentation
+         'mailer'  => MODPATH.'mailer',  // https://github.com/themusicman/Mailer
 	));
 
 /**
@@ -109,21 +106,21 @@ Route::set('logout', 'logout')
 		'directory' => 'user',
 		'controller' => 'account',
 		'action'     => 'logout',
-	));	
+	));
 	
 Route::set('noaccess', 'noaccess')
 	->defaults(array(
 		'directory' => 'user',
 		'controller' => 'account',
 		'action'     => 'noaccess',
-	));	
-
+	));
+	
 Route::set('signup', 'signup')
 	->defaults(array(
 		'directory' => 'user',
 		'controller' => 'account',
 		'action'     => 'signup',
-	));
+	)); 
 
 Route::set('profile-private', 'profile/private')
 	->defaults(array(
@@ -131,21 +128,25 @@ Route::set('profile-private', 'profile/private')
 		'controller' => 'profile',
 		'action'     => 'private',
 	));
-	
-Route::set('profile', 'profile(/<id>(/<optional>))', array('id' => '[0-9]+', 'optional' => '.*'))
+
+Route::set('profile', 'profile/<id>(/<optional>)', array(
+		'id' => '[0-9]+', 
+		'optional' => '.*'))
 	->defaults(array(
 		'directory' => 'user',
 		'controller' => 'profile',
 		'action'     => 'index',
 	));
-	
-Route::set('user-messages', 'messages/get_messages(/<id>(/<optional>))', array('id' => '[0-9]+', 'optional' => '.*'))
+
+Route::set('user-messages', 'messages/get_messages/<id>(/<optional>)', array(
+		'id' => '[0-9]+', 
+		'optional' => '.*'))
 	->defaults(array(
 		'directory' => 'user',
 		'controller' => 'messages',
-		'action'     => 'get_messages'
+		'action'     => 'get_messages',
 	));
-	
+
 Route::set('user-add-message', 'messages/add(/<id>)', array('id' => '[0-9]+'))
 	->defaults(array(
 		'directory' => 'user',
@@ -159,13 +160,20 @@ Route::set('user-edit-message', 'messages/edit(/<user_id>(/<message_id>))', arra
 		'controller' => 'messages',
 		'action'     => 'edit'
 	));
-	
+
 Route::set('user-delete-message', 'messages/delete(/<user_id>(/<message_id>))', array('id' => '[0-9]+'))
 	->defaults(array(
 		'directory' => 'user',
 		'controller' => 'messages',
 		'action'     => 'delete'
 	));
+	
+Route::set('new-messages', 'new(/<user_id>(/<message_id>))', array('id' => '[0-9]+'))
+->defaults(array(
+	'directory' => 'user',
+	'controller' => 'messages',
+	'action'     => 'new'
+));
 
 Route::set('default', '(<controller>(/<action>(/<id>)))')
 	->defaults(array(
@@ -173,11 +181,9 @@ Route::set('default', '(<controller>(/<action>(/<id>)))')
 		'action'     => 'index',
 	));
 
-/**
- * Execute the main request using PATH_INFO. If no URI source is specified,
- * the URI will be automatically detected.
- */
-$request = Request::instance($_SERVER['PATH_INFO']);
+
+
+$request = Request::instance($_SERVER['PARTH_INFO']);
 
 try
 {
@@ -186,7 +192,7 @@ try
 }
 catch (Exception $e)
 {
-	if ( ! Kohana::$environment == 'production')
+	if (Kohana::$environment == Kohana::DEVELOPMENT)
 	{
 		// Just re-throw the exception
 		throw $e;
@@ -206,6 +212,7 @@ catch (Exception $e)
 		->set('scripts', array())
 		->set('content', View::factory('errors/404'));
 }
+
 
 /**
  * Display the request response.
