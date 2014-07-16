@@ -12,8 +12,17 @@
             $site_name = 'Egotist Beta';
             
             $this->template->content = '';
-            $this->template->styles = array('reset', 'common');
-            $this->template->scripts = array();
+            $this->template->styles = array(
+                'reset',
+                'common',
+                'select2.css');
+            $this->template->scripts = array(
+                'jquery',
+                'jquery.dataTables',
+                'tabl',
+                'select2.js'
+                
+                );
         }
         protected function _user_auth() 
 	{

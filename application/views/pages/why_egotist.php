@@ -1,10 +1,23 @@
 
-<h2>Why Egotist?</h2>
-<p>Because the world wants to know when you:</p>
-<ul>
-	<li>Go to the store</li>
-	<li>See a movie</li>
-	<li>Want to share a personal thought or feeling</li>
-	<li>Need to vent about nothing</li>
-</ul>
-<p>If constantly trying to let all your friends know just how cool you are, Egotist is the app for you!</p>
+<h2>Таблица</h2>
+<table id="naprimer">
+    <thead>
+        <tr>
+            <th>Column 1</th>
+            <th>Column 2</th>
+            <th>etc</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Row 1 Data 1</td>
+            <td>Row 1 Data 2</td>
+            <td>etc</td>
+        </tr>
+        <tr>
+            <td>Row 2 Data 1</td>
+            <td>Row 2 Data 2</td>
+            <td>etc</td>
+        </tr>
+    </tbody>
+</table>
